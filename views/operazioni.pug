@@ -1,0 +1,71 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+  body
+    form(action='execOp', method='get')
+      | #{message}:
+      br
+      br
+      input(type='radio', name='operazione', value='create')
+      |  inserimento di una nuova informazione
+      br
+      | inserisci l'anno : 
+      input(type='text', name='cAnno')
+      br
+      | inserisci il tipo: 
+      input(type='text', name='cTipo')
+      br
+      | inserisci il numero di interventi in codice rosso: 
+      input(type='text', name='cRosso')
+      br
+      | inserisci il numero di interventi in codice giallo: 
+      input(type='text', name='cGiallo')
+      br
+      | inserisci il numero di interventi in codice bianco: 
+      input(type='text', name='cBianco')
+      br
+      | inserisci il numero di interventi in codice verde: 
+      input(type='text', name='cVerde')
+      br
+      br
+      input(type='radio', name='operazione', value='read')
+      |  visualizzazione degli interventi relativi ad un anno
+      br
+      | inserisci l'anno : 
+      input(type='text', name='rAnno')
+      br
+      br
+      input(type='radio', name='operazione', value='update')
+      |  aggiornamento di un intervento
+      br
+      | inserisci l'anno : 
+      input(type='text', name='uAnno')
+      br
+      | inserisci il tipo: 
+      input(type='text', name='uTipo')
+      br
+      | inserisci il numero di interventi in codice rosso: 
+      input(type='text', name='uRosso')
+      br
+      | inserisci il numero di interventi in codice giallo: 
+      input(type='text', name='uGiallo')
+      br
+      | inserisci il numero di interventi in codice bianco: 
+      input(type='text', name='uBianco')
+      br
+      | inserisci il numero di interventi in codice verde: 
+      input(type='text', name='uVerde')
+      br
+      br
+      input(type='radio', name='operazione', value='delete')
+      | eliminazione di un intervento
+      br
+      | inserisci l'anno : 
+      input(type='text', name='dAnno')
+      br
+      | inserisci il tipo: 
+      input(type='text', name='dTipo')
+      br
+      br
+      input(type='submit', value='invia')

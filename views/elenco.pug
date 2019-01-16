@@ -1,0 +1,27 @@
+html
+  head
+    title= title
+  body
+    h1= message
+    // definizione della tabella
+    if list !== undefined
+      table
+        thead
+          th(align='left') N
+          th(align='left') id
+          th(align='left') anno 
+          th(align='left') tipologia 
+          th(align='left') codice rosso
+          th(align='left') codice giallo
+          th(align='left') codice bianco
+          th(align='left') codice verde
+        each intervento, index in list
+          tr
+            td= index
+            td= intervento._id
+            td= intervento.anno
+            td= intervento.InterventoTipo
+            td= intervento.CodiceRosso
+            td= intervento.CodiceGiallo
+            td= intervento.CodiceBianco
+            td= intervento.CodiceVerde
