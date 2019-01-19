@@ -12,6 +12,8 @@
  * 
  */
 
+var url = "http://node23.codenvy.io:57264";
+
 var express = require('express');
 var app = express();
 
@@ -42,7 +44,7 @@ app.get('/execOp', function (req, res) {
             };
             // Attenzione: usando codenvy, controllare sempre l'indirizzo:porta del server REST
             // perché cambia ad ogni sessione
-            client.post("http://node27.codenvy.io:37105/insertInfo", args, function (data, response) {
+            client.post(url + "/insertInfo", args, function (data, response) {
                 // data contiene le informazioni recuperate dal server REST
                 // response contiene le informazioni riguardanti il protocollo HTTP
                 if (data.n == 1)
@@ -53,15 +55,31 @@ app.get('/execOp', function (req, res) {
         break;
         case "read": // metodo GET
             var args = {};
-            client.get("http://node27.codenvy.io:37105/infoAnno/"+ req.query.rAnno, args, function (data, response) { 
+            client.get(url + "/infoAnno/"+ req.query.rAnno, args, function (data, response) { 
                 res.render('elenco', {list: data});
             });
         break;
         case "update": // metodo PUT
-            // inserire qui il codice
+            client.put(url + "/updateInfo/" + req.query.uAnno + "/" + req.query.uTipo + "/" + req.query.uRosso + "/" + req.query.uGiallo + "/" + req.query.uBianco + "/" + req.query.uVerde, function(data, response){
+                // data contiene le informazioni recuperate dal server REST
+                // response contiene le informazioni riguardanti il protocollo HTTP
+                if (data.n == 1)
+                    res.render('risposta', {message: 'E\' stata aggiornata una nuova informazione'});
+                else
+                    res.render('risposta', {message: 'Problemi nell\'aggiornamento'});
+            });
         break;
         case "delete": // metodo DELETE
-            // inserire qui il codice
+            
+            client.delete(url + "/deleteInfo/" + req.query.dAnno + "/" + req.query.dTipo, function(data, response){
+                // data contiene le informazioni recuperate dal server REST
+                // response contiene le informazioni riguardanti il protocollo HTTP
+                if (data.n == 1)
+                    res.render('risposta', {message: 'E\' stata eliminata una nuova informazione'});
+                else
+                    res.render('risposta', {message: 'Problemi nell\'eliminazione'});
+            });
+            
         break;
     }
 });
